@@ -17,7 +17,7 @@ export function initFiltering(elements) {
   const applyFiltering = (query, state, action) => {
     // код с обработкой очистки поля
     if (action && action.name === "clear") {
-      const btn = action.target;
+      const btn = action;
       const parent = btn.parentElement;
       const input = parent.querySelector("input");
       if (input) {
@@ -25,14 +25,7 @@ export function initFiltering(elements) {
       }
       const fieldName = btn.dataset.field;
       if (fieldName) {
-        const newState = {
-          ...state,
-          filters: {
-            ...state.filters,
-            [fieldName]: "",
-          },
-        };
-        render(data, newState);                                     //здесь query был data
+        state[action.dataset.field] = '';
       }
     };
 
